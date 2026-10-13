@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="color-scheme" content="light">
+  <title>退休计划 - 为了自由，为了不上班</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="mobile-viewport-wrapper">
+    <div class="app-container">
+      
+      <!-- Top Status / Decorative Accent -->
+      <div class="top-badge-row">
+        <div class="freedom-badge">
+          <span class="pulse-dot"></span>
+          <span>自由倒计时进行中</span>
+        </div>
+        <div class="target-tag">终极目标 500W</div>
+      </div>
+
+      <!-- Hero Header -->
+      <header class="hero-section">
+        <h1 class="main-title">退休计划</h1>
+        <div class="slogan-card">
+          <div class="slogan-quote">“</div>
+          <p class="slogan-text">为了自由，为了不上班。</p>
+          <div class="slogan-sub">Freedom is not free, but it's worth every penny.</div>
+        </div>
+      </header>
+
+      <!-- Section 1: The Harsh Reality & Wake-Up Call -->
+      <section class="reality-card card-shadow">
+        <div class="section-badge warning">现实清醒剂 · 纯靠奇迹？</div>
+        <h2 class="card-title">不可行的“单车变摩托”</h2>
+        
+        <div class="spec-grid">
+          <div class="spec-item">
+            <span class="label">退休财务目标</span>
+            <span class="value highlight-orange">500 万</span>
+          </div>
+          <div class="spec-item">
+            <span class="label">计划时间</span>
+            <span class="value">5 年</span>
+          </div>
+          <div class="spec-item">
+            <span class="label">启动资产</span>
+            <span class="value">35 万</span>
+          </div>
+        </div>
+
+        <div class="callout-box">
+          <p class="callout-text">
+            在<strong>不追加任何后续储蓄或新资金</strong>的前提下，你需要达到的年复合增长率（CAGR）约为：
+          </p>
+          <div class="cagr-rate"><span class="rate-number">70.21</span>%</div>
+          <p class="callout-sub">
+            这意味着启动资产需要在 5 年内暴涨 <strong class="text-orange">14.29 倍</strong>。
+          </p>
+        </div>
+
+        <div class="trajectory-block">
+          <div class="sub-heading">每年的净资产增长轨迹预测：</div>
+          <div class="timeline-stepper">
+            <div class="step-row">
+              <span class="year-pill">第 1 年末</span>
+              <span class="line-dots"></span>
+              <span class="amount">约 59.57 万元</span>
+            </div>
+            <div class="step-row">
+              <span class="year-pill">第 2 年末</span>
+              <span class="line-dots"></span>
+              <span class="amount">约 101.40 万元</span>
+            </div>
+            <div class="step-row">
+              <span class="year-pill">第 3 年末</span>
+              <span class="line-dots"></span>
+              <span class="amount">约 172.59 万元</span>
+            </div>
+            <div class="step-row">
+              <span class="year-pill">第 4 年末</span>
+              <span class="line-dots"></span>
+              <span class="amount">约 293.77 万元</span>
+            </div>
+            <div class="step-row final">
+              <span class="year-pill target-pill">第 5 年末</span>
+              <span class="line-dots"></span>
+              <span class="amount highlight-orange">约 500.02 万元</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Warning Alert Box -->
+        <div class="alert-box-alarm">
+          <div class="alarm-header">
+            <span class="alarm-icon">⚠️</span>
+            <span class="alarm-title">极清醒的金融真相</span>
+          </div>
+          <p class="alarm-desc">
+            连续 5 年维持 70.21% 的年复合收益率，在专业金融投资中属于<strong>极低概率事件</strong>。这是不可能的，痴人做梦！
+          </p>
+          <div class="alarm-conclusion">
+            <strong>核心结论：</strong>必须有计划、储蓄、选中好的投资标的，并且<strong>每个月追加投资金额</strong>，缺一不可！！！
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Interactive Parameter Simulation -->
+      <section class="simulation-card card-shadow" id="simulator-section">
+        <div class="simulation-header-row">
+          <div>
+            <div class="section-badge info">理智行动方案 · 科学推演</div>
+            <h2 class="card-title">调整模拟假设参数</h2>
+            <p class="card-subtitle">理智设定每步行动，观察如何将妄想转为现实</p>
+          </div>
+          <div class="preset-pill-group">
+            <button type="button" class="preset-btn" id="btnPresetFantasy" title="纯靠本金5年膨胀14.29倍">🔥 70.2% 痴人做梦版</button>
+            <button type="button" class="preset-btn active" id="btnPresetRealistic" title="定投+优质标的理智路径">🌱 理智定投版</button>
+          </div>
+        </div>
+
+        <div class="slider-group">
+          <!-- Slider 1: Initial Asset -->
+          <div class="control-card">
+            <div class="control-header">
+              <label for="initialCapital" class="ctrl-label">启动资产</label>
+              <div class="input-tag-pill" id="displayInitialTag">¥350,000</div>
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" id="initialCapital" min="0" max="2000000" step="10000" value="350000">
+            </div>
+            <div class="slider-scale">
+              <span>0</span>
+              <span>100万</span>
+              <span>200万</span>
+            </div>
+          </div>
+
+          <!-- Slider 2: Monthly Contribution -->
+          <div class="control-card highlight-field">
+            <div class="control-header">
+              <div class="label-with-tip">
+                <label for="monthlyContribution" class="ctrl-label">每月追加定投</label>
+                <span class="badge-mini">降杠杆神器</span>
+              </div>
+              <div class="input-tag-pill highlight" id="displayMonthlyTag">¥12,000</div>
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" id="monthlyContribution" min="0" max="60000" step="1000" value="12000">
+            </div>
+            <div class="slider-scale">
+              <span>¥0</span>
+              <span>¥30,000</span>
+              <span>¥60,000</span>
+            </div>
+          </div>
+
+          <!-- Slider 3: Expected CAGR -->
+          <div class="control-card">
+            <div class="control-header">
+              <label for="cagrRate" class="ctrl-label">年化复合收益率 (%)</label>
+              <div class="input-tag-pill" id="displayCagrTag">10.0%</div>
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" id="cagrRate" min="2" max="75" step="0.5" value="10">
+            </div>
+            <div class="slider-scale">
+              <span>2% (稳健)</span>
+              <span>10% (理性标的)</span>
+              <span>70.2% (奇迹)</span>
+            </div>
+          </div>
+
+          <!-- Slider 4: Time Horizon -->
+          <div class="control-card">
+            <div class="control-header">
+              <label for="yearsPeriod" class="ctrl-label">投资期限 (年)</label>
+              <div class="input-tag-pill" id="displayYearsTag">8 年</div>
+            </div>
+            <div class="slider-wrapper">
+              <input type="range" id="yearsPeriod" min="1" max="20" step="1" value="8">
+            </div>
+            <div class="slider-scale">
+              <span>1年</span>
+              <span>5年</span>
+              <span>10年</span>
+              <span>20年</span>
+            </div>
+          </div>
+        </div>
+
+        <p class="sim-note">
+          * 默认展示理性参数组合；你可以大幅调高每月定投金额或适当延长周期，观察达标所需年化收益如何从疯狂的 70.2% 下降至安全区间。
+        </p>
+
+        <!-- KPI 3-Column Display (Matching User Mockup) -->
+        <div class="kpi-banner">
+          <div class="kpi-column">
+            <div class="kpi-val" id="kpiInitial">¥350,000</div>
+            <div class="kpi-sub">启动资产</div>
+          </div>
+          <div class="kpi-divider"></div>
+          <div class="kpi-column">
+            <div class="kpi-val highlight-blue" id="kpiCagr">10.0%</div>
+            <div class="kpi-sub">年化复合收益率</div>
+          </div>
+          <div class="kpi-divider"></div>
+          <div class="kpi-column">
+            <div class="kpi-val text-bold" id="kpiFinalBalance">¥2.18M</div>
+            <div class="kpi-sub">期末资产余额</div>
+          </div>
+        </div>
+
+        <!-- Chart Section -->
+        <div class="chart-container-box">
+          <div class="chart-header">
+            <span class="chart-title">账户总资产预测</span>
+            <span class="chart-status" id="chartTargetBadge">距500W还需努力</span>
+          </div>
+          <div class="canvas-wrap">
+            <canvas id="assetChart"></canvas>
+          </div>
+          <div class="chart-legend-custom">
+            <span class="legend-item"><span class="dot-color blue"></span>预测资产增长</span>
+            <span class="legend-item"><span class="dot-color gray"></span>纯本金累计</span>
+            <span class="legend-item"><span class="dot-line orange"></span>500W目标基准线</span>
+          </div>
+        </div>
+
+        <!-- Strategy Advice Box -->
+        <div class="advice-card" id="strategyAdviceBox">
+          <div class="advice-title">💡 理智行动建议</div>
+          <div class="advice-content" id="strategyAdviceText">
+            计算中...
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Shawshank Tunnel (肖申克的地道 · 越狱行动) -->
+      <section class="shawshank-card card-shadow">
+        <div class="shawshank-hero">
+          <div class="section-badge dark-accent">肖申克的地道 · 越狱暗格</div>
+          <h2 class="shawshank-title">现金储蓄：逃离苦役的凿墙距离</h2>
+          <p class="shawshank-desc">
+            “心怀希望是一件好事，也许是最好的事，而美好的事物永不消逝。”
+            每一笔攒下的现金，都是安迪用小鹤嘴锄从石墙里掏出的一捧沙。
+          </p>
+        </div>
+
+        <!-- Digging Progress Visual -->
+        <div class="tunnel-visual-box">
+          <div class="tunnel-metrics-row">
+            <div>
+              <span class="t-label">地道总深度</span>
+              <div class="t-value">500 米 <span class="t-sub">(对应 500W)</span></div>
+            </div>
+            <div class="align-right">
+              <span class="t-label">已掘通进度</span>
+              <div class="t-value text-gold" id="tunnelPercent">7.0%</div>
+            </div>
+          </div>
+
+          <!-- Cross-section Graphic bar -->
+          <div class="tunnel-cross-section">
+            <div class="tunnel-wall">
+              <!-- Wall Texture Overlay -->
+              <div class="prison-cell">
+                <span class="icon-poster" title="拉蔻儿·薇芝的海报">🖼️ 牢房</span>
+              </div>
+              <div class="dug-channel" id="dugChannelBar" style="width: 7%;">
+                <span class="andy-runner" title="正在挥镐的安迪">⛏️</span>
+              </div>
+              <div class="freedom-ocean">
+                <span>🌊 自由海滩</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="current-dig-stats">
+            <div class="dig-chip">
+              <span class="dig-caption">当前蓄水池资产</span>
+              <span class="dig-num" id="currentSavingsDisplay">¥350,000</span>
+            </div>
+            <div class="dig-chip">
+              <span class="dig-caption">已掘进深度</span>
+              <span class="dig-num text-gold" id="currentMetersDisplay">35.0 米</span>
+            </div>
+            <div class="dig-chip">
+              <span class="dig-caption">距离雷雨夜突围</span>
+              <span class="dig-num" id="remainingMetersDisplay">465.0 米</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shawshank Milestones (越狱五重关隘) -->
+        <div class="milestones-block">
+          <div class="milestones-header">
+            <span>越狱里程碑进度</span>
+            <span class="milestone-current-tag" id="currentMilestoneStage">第 1 关：海报背后的暗坑</span>
+          </div>
+
+          <div class="stage-list" id="stageList">
+            <!-- Stage 1 -->
+            <div class="stage-card active" data-meter="50">
+              <div class="stage-icon">⛏️</div>
+              <div class="stage-content">
+                <div class="stage-top">
+                  <span class="stage-name">第一关：圣经中的小石锤</span>
+                  <span class="stage-target">50万 / 50米</span>
+                </div>
+                <p class="stage-detail">启动原始本金，在墙上抠出第一个深坑。坚决拒绝高消费诱惑。</p>
+              </div>
+              <div class="stage-check">✓</div>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="stage-card" data-meter="100">
+              <div class="stage-icon">🧱</div>
+              <div class="stage-content">
+                <div class="stage-top">
+                  <span class="stage-name">第二关：凿穿两英尺石灰石</span>
+                  <span class="stage-target">100万 / 100米</span>
+                </div>
+                <p class="stage-detail">首个百万大关，储蓄开始发挥雪球效应，利息已可覆盖部分生活开支。</p>
+              </div>
+              <div class="stage-check">🔒</div>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="stage-card" data-meter="250">
+              <div class="stage-icon">🌫️</div>
+              <div class="stage-content">
+                <div class="stage-top">
+                  <span class="stage-name">第三关：地道工程过半·耐受窒息</span>
+                  <span class="stage-target">250万 / 250米</span>
+                </div>
+                <p class="stage-detail">最易放弃的倦怠期。复利开始超越工资结余，地道深处已能嗅到泥土潮湿香气。</p>
+              </div>
+              <div class="stage-check">🔒</div>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="stage-card" data-meter="400">
+              <div class="stage-icon">🌧️</div>
+              <div class="stage-content">
+                <div class="stage-top">
+                  <span class="stage-name">第四关：500码恶臭排水管道</span>
+                  <span class="stage-target">400万 / 400米</span>
+                </div>
+                <p class="stage-detail">“爬过五百码污浊，只为洗净灵魂”。熬过这最后一里路，辞职信已经可以写好草稿。</p>
+              </div>
+              <div class="stage-check">🔒</div>
+            </div>
+
+            <!-- Stage 5 -->
+            <div class="stage-card" data-meter="500">
+              <div class="stage-icon">🏖️</div>
+              <div class="stage-content">
+                <div class="stage-top">
+                  <span class="stage-name">最终关：太平洋的蔚蓝波涛</span>
+                  <span class="stage-target">500万 / 500米</span>
+                </div>
+                <p class="stage-detail">自由之海：在暴雨中脱下工装仰天大笑，芝华塔尼欧海滩的阳光正照耀你的余生！</p>
+              </div>
+              <div class="stage-check">🏆</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Strike Log: 每日/本月挥锤打卡 -->
+        <div class="hammer-card">
+          <div class="hammer-title">
+            <span>🔨 今日为地道凿深一寸</span>
+            <span class="hammer-pill">现金打卡</span>
+          </div>
+          <p class="hammer-subtitle">每存入 1 万元 = 地道向前延伸 1 米；存入 1,000 元 = 0.1 米</p>
+          
+          <div class="hammer-input-box">
+            <span class="currency-prefix">¥</span>
+            <input type="number" id="depositInput" placeholder="输入追加储蓄金额 (如 5000)" min="100" step="500">
+            <button id="btnDeposit" class="btn-strike">挥锤入账</button>
+          </div>
+
+          <div class="quick-deposit-pills">
+            <button class="pill-btn" data-amount="1000">+¥1,000 (省下冲动开销)</button>
+            <button class="pill-btn" data-amount="5000">+¥5,000 (副业/奖金)</button>
+            <button class="pill-btn" data-amount="10000">+¥10,000 (月度定投)</button>
+          </div>
+
+          <div class="strike-logs">
+            <div class="logs-header">近期越狱挖掘日志：</div>
+            <ul class="logs-list" id="logsList">
+              <li class="log-item">
+                <span class="log-date">2026-10-13</span>
+                <span class="log-text">启动本金入驻，牢房高墙被掘出基石</span>
+                <span class="log-dist">+35.0 米</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Discipline Checkbox / Daily Todo: 越狱者自律戒律 -->
+        <div class="discipline-box">
+          <div class="discipline-header">
+            <span>🛡️ 越狱防漏日常戒律</span>
+            <span class="discipline-count" id="checkedCount">已践行 2/5</span>
+          </div>
+          <div class="todo-list">
+            <label class="todo-item">
+              <input type="checkbox" class="todo-cb" checked>
+              <span class="todo-custom-check"></span>
+              <span class="todo-text">坚决不碰高风险杠杆与妖股博弈（不把石锤摔碎）</span>
+            </label>
+            <label class="todo-item">
+              <input type="checkbox" class="todo-cb" checked>
+              <span class="todo-custom-check"></span>
+              <span class="todo-text">工资到账日自动划扣月度定投，先存后花</span>
+            </label>
+            <label class="todo-item">
+              <input type="checkbox" class="todo-cb">
+              <span class="todo-custom-check"></span>
+              <span class="todo-text">拒绝面子消费与伪精致消费（省下的都是自由）</span>
+            </label>
+            <label class="todo-item">
+              <input type="checkbox" class="todo-cb">
+              <span class="todo-custom-check"></span>
+              <span class="todo-text">每周花 2 小时深研高股息或优质宽基指数底仓</span>
+            </label>
+            <label class="todo-item">
+              <input type="checkbox" class="todo-cb">
+              <span class="todo-custom-check"></span>
+              <span class="todo-text">不向任何人炫耀储蓄进度，静默挖掘直至破墙</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Footer Note -->
+      <footer class="app-footer">
+        <p class="footer-quote">“有些鸟儿是关不住的，它们的每一片羽毛都闪耀着自由的光辉。”</p>
+        <p class="footer-meta">退休计划 · 专为理智与自由同行者设计</p>
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
