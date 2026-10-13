@@ -117,7 +117,7 @@
         <div class="simulation-header-row">
           <div>
             <div class="section-badge info">理智行动方案 · 科学推演</div>
-            <h2 class="card-title">调整模拟假设参数</h2>
+            <h2 class="card-title">投资资产增长预测与推演</h2>
             <p class="card-subtitle">理智设定每步行动，观察如何将妄想转为现实</p>
           </div>
           <div class="preset-pill-group">
@@ -126,9 +126,52 @@
           </div>
         </div>
 
-        <div class="slider-group">
+        <!-- 1. KPI 3-Column Display (Moved to Top) -->
+        <div class="kpi-banner">
+          <div class="kpi-column">
+            <div class="kpi-val" id="kpiInitial">¥350,000</div>
+            <div class="kpi-sub">启动资产</div>
+          </div>
+          <div class="kpi-divider"></div>
+          <div class="kpi-column">
+            <div class="kpi-val highlight-blue" id="kpiCagr">10.0%</div>
+            <div class="kpi-sub">年化复合收益率</div>
+          </div>
+          <div class="kpi-divider"></div>
+          <div class="kpi-column">
+            <div class="kpi-val text-bold" id="kpiFinalBalance">¥2.18M</div>
+            <div class="kpi-sub">期末资产余额</div>
+          </div>
+        </div>
+
+        <!-- 2. Chart Section (Enlarged and placed prominently above parameters) -->
+        <div class="chart-container-box">
+          <div class="chart-header">
+            <div>
+              <span class="chart-title">账户总资产预测</span>
+              <span class="chart-subtitle-mini">复利雪球增长趋势</span>
+            </div>
+            <span class="chart-status" id="chartTargetBadge">距500W还需努力</span>
+          </div>
+          <div class="canvas-wrap enlarged-chart">
+            <canvas id="assetChart"></canvas>
+          </div>
+          <div class="chart-legend-custom">
+            <span class="legend-item"><span class="dot-color blue"></span>预测资产增长</span>
+            <span class="legend-item"><span class="dot-color gray"></span>纯本金累计</span>
+            <span class="legend-item"><span class="dot-line orange"></span>500W目标基准线</span>
+          </div>
+        </div>
+
+        <!-- 3. Parameter Controls (Compact & refined below the chart) -->
+        <div class="params-header-mini">
+          <span class="params-title-mini">⚙️ 调整模拟假设参数</span>
+          <span class="params-hint-mini">拖动滑块实时联动上方图表</span>
+        </div>
+
+        <div class="slider-group compact-slider-group">
           <!-- Slider 1: Initial Asset -->
-          <div class="control-card">
+          <div class="control-card compact-card">
             <div class="control-header">
               <label for="initialCapital" class="ctrl-label">启动资产</label>
               <div class="input-tag-pill" id="displayInitialTag">¥350,000</div>
@@ -144,7 +187,7 @@
           </div>
 
           <!-- Slider 2: Monthly Contribution -->
-          <div class="control-card highlight-field">
+          <div class="control-card compact-card highlight-field">
             <div class="control-header">
               <div class="label-with-tip">
                 <label for="monthlyContribution" class="ctrl-label">每月追加定投</label>
@@ -163,7 +206,7 @@
           </div>
 
           <!-- Slider 3: Expected CAGR -->
-          <div class="control-card">
+          <div class="control-card compact-card">
             <div class="control-header">
               <label for="cagrRate" class="ctrl-label">年化复合收益率 (%)</label>
               <div class="input-tag-pill" id="displayCagrTag">10.0%</div>
@@ -179,7 +222,7 @@
           </div>
 
           <!-- Slider 4: Time Horizon -->
-          <div class="control-card">
+          <div class="control-card compact-card">
             <div class="control-header">
               <label for="yearsPeriod" class="ctrl-label">投资期限 (年)</label>
               <div class="input-tag-pill" id="displayYearsTag">8 年</div>
@@ -197,42 +240,8 @@
         </div>
 
         <p class="sim-note">
-          * 默认展示理性参数组合；你可以大幅调高每月定投金额或适当延长周期，观察达标所需年化收益如何从疯狂的 70.2% 下降至安全区间。
+          * 默认展示理性参数组合；调高每月定投金额或延长周期，达标所需年化收益将显著回归安全区间。
         </p>
-
-        <!-- KPI 3-Column Display (Matching User Mockup) -->
-        <div class="kpi-banner">
-          <div class="kpi-column">
-            <div class="kpi-val" id="kpiInitial">¥350,000</div>
-            <div class="kpi-sub">启动资产</div>
-          </div>
-          <div class="kpi-divider"></div>
-          <div class="kpi-column">
-            <div class="kpi-val highlight-blue" id="kpiCagr">10.0%</div>
-            <div class="kpi-sub">年化复合收益率</div>
-          </div>
-          <div class="kpi-divider"></div>
-          <div class="kpi-column">
-            <div class="kpi-val text-bold" id="kpiFinalBalance">¥2.18M</div>
-            <div class="kpi-sub">期末资产余额</div>
-          </div>
-        </div>
-
-        <!-- Chart Section -->
-        <div class="chart-container-box">
-          <div class="chart-header">
-            <span class="chart-title">账户总资产预测</span>
-            <span class="chart-status" id="chartTargetBadge">距500W还需努力</span>
-          </div>
-          <div class="canvas-wrap">
-            <canvas id="assetChart"></canvas>
-          </div>
-          <div class="chart-legend-custom">
-            <span class="legend-item"><span class="dot-color blue"></span>预测资产增长</span>
-            <span class="legend-item"><span class="dot-color gray"></span>纯本金累计</span>
-            <span class="legend-item"><span class="dot-line orange"></span>500W目标基准线</span>
-          </div>
-        </div>
 
         <!-- Strategy Advice Box -->
         <div class="advice-card" id="strategyAdviceBox">
@@ -242,6 +251,176 @@
           </div>
         </div>
       </section>
+
+      <!-- Section 3: Leverage Interest Calculator (杠杆利息试算) -->
+      <section class="leverage-card card-shadow" id="leverage-section">
+        <div class="section-badge warning">杠杆试算 · 风险与成本防线</div>
+        <h2 class="card-title">杠杆利息试算</h2>
+        <p class="card-subtitle">测算负债成本与月供现金流压力，守住安全边际</p>
+
+        <div class="leverage-inputs">
+          <!-- Loan Amount -->
+          <div class="lev-input-group">
+            <div class="lev-input-header">
+              <label for="levAmount" class="lev-label">借款 / 杠杆本金</label>
+              <span class="lev-val-display" id="levAmountDisplay">¥100,000</span>
+            </div>
+            <div class="lev-input-wrapper">
+              <span class="lev-prefix">¥</span>
+              <input type="number" id="levAmount" value="100000" min="1000" max="10000000" step="5000">
+            </div>
+            <div class="quick-pill-row" id="levAmountPills">
+              <button type="button" class="lev-pill" data-amount="50000">5万</button>
+              <button type="button" class="lev-pill active" data-amount="100000">10万</button>
+              <button type="button" class="lev-pill" data-amount="200000">20万</button>
+              <button type="button" class="lev-pill" data-amount="500000">50万</button>
+              <button type="button" class="lev-pill" data-amount="1000000">100万</button>
+            </div>
+          </div>
+
+          <!-- Interest Rate -->
+          <div class="lev-input-group">
+            <div class="lev-input-header">
+              <label for="levRate" class="lev-label">年利率 (%)</label>
+              <span class="lev-val-display" id="levRateDisplay">3.5%</span>
+            </div>
+            <div class="lev-input-wrapper">
+              <span class="lev-prefix">%</span>
+              <input type="number" id="levRate" value="3.5" min="0.1" max="36" step="0.1">
+            </div>
+            <div class="quick-pill-row" id="levRatePills">
+              <button type="button" class="lev-pill" data-rate="2.8">2.8% 特惠</button>
+              <button type="button" class="lev-pill active" data-rate="3.5">3.5% 优质贷</button>
+              <button type="button" class="lev-pill" data-rate="4.5">4.5% 消费贷</button>
+              <button type="button" class="lev-pill" data-rate="6.0">6.0% 抵押/融券</button>
+            </div>
+          </div>
+
+          <!-- Loan Term -->
+          <div class="lev-input-group">
+            <div class="lev-input-header">
+              <label class="lev-label">借款期限</label>
+              <span class="lev-val-display" id="levTermDisplay">36 期 (3年)</span>
+            </div>
+            <div class="term-selector-row" id="levTermBtns">
+              <button type="button" class="term-btn" data-months="12">12期 (1年)</button>
+              <button type="button" class="term-btn" data-months="24">24期 (2年)</button>
+              <button type="button" class="term-btn active" data-months="36">36期 (3年)</button>
+              <button type="button" class="term-btn" data-months="60">60期 (5年)</button>
+            </div>
+          </div>
+
+          <!-- Repayment Method -->
+          <div class="lev-input-group">
+            <label class="lev-label">还款方式</label>
+            <div class="repay-method-tabs" id="repayMethodTabs">
+              <button type="button" class="method-tab active" data-method="equal-pmt">
+                <span class="tab-title">等额本息</span>
+                <span class="tab-desc">每月还款固定</span>
+              </button>
+              <button type="button" class="method-tab" data-method="equal-principal">
+                <span class="tab-title">等额本金</span>
+                <span class="tab-desc">本金等额·月供递减</span>
+              </button>
+              <button type="button" class="method-tab" data-method="interest-first">
+                <span class="tab-title">先息后本</span>
+                <span class="tab-desc">每月付息·到期还本</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Leverage KPI Results -->
+        <div class="lev-result-card">
+          <div class="lev-kpi-grid">
+            <div class="lev-kpi-item primary">
+              <div class="lev-kpi-label" id="levPaymentLabel">每月月供金额</div>
+              <div class="lev-kpi-num" id="levMonthlyPayment">¥2,930.21</div>
+              <div class="lev-kpi-sub" id="levPaymentSub">首期本金 ¥2,638.54 · 利息 ¥291.67</div>
+            </div>
+            <div class="lev-kpi-item">
+              <div class="lev-kpi-label">累计支付利息</div>
+              <div class="lev-kpi-num highlight-orange" id="levTotalInterest">¥5,487.64</div>
+              <div class="lev-kpi-sub" id="levInterestRatio">利息占本金 5.49%</div>
+            </div>
+            <div class="lev-kpi-item">
+              <div class="lev-kpi-label">还款总额 (本息合计)</div>
+              <div class="lev-kpi-num" id="levTotalRepayment">¥105,487.64</div>
+              <div class="lev-kpi-sub" id="levPrincipalBaseSub">本金 ¥100,000</div>
+            </div>
+          </div>
+
+          <!-- Risk & Safety tip -->
+          <div class="lev-risk-tip" id="levRiskTip">
+            ⚠️ <strong>杠杆警示：</strong>年利率 3.50%，若投资年化复合收益率低于此成本，杠杆将反噬本金；建议月供不超过个人月结余的 30%。
+          </div>
+
+          <!-- Schedule table actions -->
+          <div class="lev-actions-row">
+            <button type="button" class="btn-toggle-schedule" id="btnToggleSchedule">
+              <span id="scheduleToggleText">铺开还款计划明细表 (共 36 期)</span>
+              <span class="arrow-icon" id="scheduleArrow">▾</span>
+            </button>
+            <button type="button" class="btn-modal-schedule" id="btnOpenModalSchedule">
+              ⤢ 弹窗全览
+            </button>
+          </div>
+
+          <!-- Inline collapsible table -->
+          <div class="schedule-table-wrap" id="scheduleTableWrap" style="display: none;">
+            <div class="table-scroll-container">
+              <table class="schedule-table">
+                <thead>
+                  <tr>
+                    <th>期数</th>
+                    <th>月还款额</th>
+                    <th>偿还本金</th>
+                    <th>偿还利息</th>
+                    <th>剩余本金</th>
+                  </tr>
+                </thead>
+                <tbody id="scheduleTableBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Repayment Schedule Modal -->
+      <div class="modal-overlay" id="scheduleModal" style="display: none;">
+        <div class="modal-card">
+          <div class="modal-header">
+            <div>
+              <h3 class="modal-title">还款计划明细表</h3>
+              <p class="modal-subtitle" id="modalPlanSubtitle">10万 · 3.5% · 36期 · 等额本息</p>
+            </div>
+            <button type="button" class="modal-close-btn" id="btnCloseModal">✕</button>
+          </div>
+          <div class="modal-body">
+            <div class="modal-summary-banner" id="modalSummaryBanner">
+              <!-- summary stats -->
+            </div>
+            <div class="table-scroll-container modal-table-scroll">
+              <table class="schedule-table">
+                <thead>
+                  <tr>
+                    <th>期数</th>
+                    <th>月还款额</th>
+                    <th>偿还本金</th>
+                    <th>偿还利息</th>
+                    <th>剩余本金</th>
+                  </tr>
+                </thead>
+                <tbody id="modalScheduleTableBody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <!-- Section 3: Shawshank Tunnel (肖申克的地道 · 越狱行动) -->
       <section class="shawshank-card card-shadow">
@@ -262,8 +441,8 @@
               <div class="t-value">500 米 <span class="t-sub">(对应 500W)</span></div>
             </div>
             <div class="align-right">
-              <span class="t-label">已掘通进度</span>
-              <div class="t-value text-gold" id="tunnelPercent">7.0%</div>
+              <span class="t-label">已掘通进度 (每步20%)</span>
+              <div class="t-value text-gold" id="tunnelPercent">20.0%</div>
             </div>
           </div>
 
@@ -274,7 +453,7 @@
               <div class="prison-cell">
                 <span class="icon-poster" title="拉蔻儿·薇芝的海报">🖼️ 牢房</span>
               </div>
-              <div class="dug-channel" id="dugChannelBar" style="width: 7%;">
+              <div class="dug-channel" id="dugChannelBar" style="width: 20%;">
                 <span class="andy-runner" title="正在挥镐的安迪">⛏️</span>
               </div>
               <div class="freedom-ocean">
@@ -285,16 +464,16 @@
 
           <div class="current-dig-stats">
             <div class="dig-chip">
-              <span class="dig-caption">当前蓄水池资产</span>
-              <span class="dig-num" id="currentSavingsDisplay">¥350,000</span>
+              <span class="dig-caption">阶段蓄水池资产</span>
+              <span class="dig-num" id="currentSavingsDisplay">¥1,000,000</span>
             </div>
             <div class="dig-chip">
               <span class="dig-caption">已掘进深度</span>
-              <span class="dig-num text-gold" id="currentMetersDisplay">35.0 米</span>
+              <span class="dig-num text-gold" id="currentMetersDisplay">100.0 米</span>
             </div>
             <div class="dig-chip">
               <span class="dig-caption">距离雷雨夜突围</span>
-              <span class="dig-num" id="remainingMetersDisplay">465.0 米</span>
+              <span class="dig-num" id="remainingMetersDisplay">400.0 米</span>
             </div>
           </div>
         </div>
@@ -302,74 +481,79 @@
         <!-- Shawshank Milestones (越狱五重关隘) -->
         <div class="milestones-block">
           <div class="milestones-header">
-            <span>越狱里程碑进度</span>
-            <span class="milestone-current-tag" id="currentMilestoneStage">第 1 关：海报背后的暗坑</span>
+            <span>越狱里程碑进度（点击通关 / 撤销）</span>
+            <span class="milestone-current-tag" id="currentMilestoneStage">第 1 关已达成 (20%)</span>
           </div>
 
           <div class="stage-list" id="stageList">
             <!-- Stage 1 -->
-            <div class="stage-card active" data-meter="50">
+            <div class="stage-card passed" data-step="1">
               <div class="stage-icon">⛏️</div>
               <div class="stage-content">
                 <div class="stage-top">
                   <span class="stage-name">第一关：圣经中的小石锤</span>
-                  <span class="stage-target">50万 / 50米</span>
+                  <span class="stage-target">100万 / 100米 (20%)</span>
                 </div>
                 <p class="stage-detail">启动原始本金，在墙上抠出第一个深坑。坚决拒绝高消费诱惑。</p>
+                <div class="stage-action-tip">已完成 · 点击可撤销返回 0%</div>
               </div>
               <div class="stage-check">✓</div>
             </div>
 
             <!-- Stage 2 -->
-            <div class="stage-card" data-meter="100">
+            <div class="stage-card active" data-step="2">
               <div class="stage-icon">🧱</div>
               <div class="stage-content">
                 <div class="stage-top">
                   <span class="stage-name">第二关：凿穿两英尺石灰石</span>
-                  <span class="stage-target">100万 / 100米</span>
+                  <span class="stage-target">200万 / 200米 (40%)</span>
                 </div>
-                <p class="stage-detail">首个百万大关，储蓄开始发挥雪球效应，利息已可覆盖部分生活开支。</p>
+                <p class="stage-detail">首个两百万大关，储蓄雪球开始飞奔，被动利息已能覆盖部分开支。</p>
+                <div class="stage-action-tip">当前冲刺关卡 · 点击标记完成</div>
               </div>
-              <div class="stage-check">🔒</div>
+              <div class="stage-check">⛏️</div>
             </div>
 
             <!-- Stage 3 -->
-            <div class="stage-card" data-meter="250">
+            <div class="stage-card locked" data-step="3">
               <div class="stage-icon">🌫️</div>
               <div class="stage-content">
                 <div class="stage-top">
                   <span class="stage-name">第三关：地道工程过半·耐受窒息</span>
-                  <span class="stage-target">250万 / 250米</span>
+                  <span class="stage-target">300万 / 300米 (60%)</span>
                 </div>
-                <p class="stage-detail">最易放弃的倦怠期。复利开始超越工资结余，地道深处已能嗅到泥土潮湿香气。</p>
+                <p class="stage-detail">最易放弃的倦怠期。复利超越工资结余，地道深处已能嗅到泥土潮湿香气。</p>
+                <div class="stage-action-tip lock-hint">未解锁 · 需先完成第二关</div>
               </div>
               <div class="stage-check">🔒</div>
             </div>
 
             <!-- Stage 4 -->
-            <div class="stage-card" data-meter="400">
+            <div class="stage-card locked" data-step="4">
               <div class="stage-icon">🌧️</div>
               <div class="stage-content">
                 <div class="stage-top">
                   <span class="stage-name">第四关：500码恶臭排水管道</span>
-                  <span class="stage-target">400万 / 400米</span>
+                  <span class="stage-target">400万 / 400米 (80%)</span>
                 </div>
-                <p class="stage-detail">“爬过五百码污浊，只为洗净灵魂”。熬过这最后一里路，辞职信已经可以写好草稿。</p>
+                <p class="stage-detail">“爬过五百码污浊，只为洗净灵魂”。熬过这最后一里路，辞职信已备好。</p>
+                <div class="stage-action-tip lock-hint">未解锁 · 需先完成第三关</div>
               </div>
               <div class="stage-check">🔒</div>
             </div>
 
             <!-- Stage 5 -->
-            <div class="stage-card" data-meter="500">
+            <div class="stage-card locked" data-step="5">
               <div class="stage-icon">🏖️</div>
               <div class="stage-content">
                 <div class="stage-top">
                   <span class="stage-name">最终关：太平洋的蔚蓝波涛</span>
-                  <span class="stage-target">500万 / 500米</span>
+                  <span class="stage-target">500万 / 500米 (100%)</span>
                 </div>
                 <p class="stage-detail">自由之海：在暴雨中脱下工装仰天大笑，芝华塔尼欧海滩的阳光正照耀你的余生！</p>
+                <div class="stage-action-tip lock-hint">未解锁 · 需先完成第四关</div>
               </div>
-              <div class="stage-check">🏆</div>
+              <div class="stage-check">🔒</div>
             </div>
           </div>
         </div>

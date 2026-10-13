@@ -433,8 +433,33 @@ body {
 .slider-group {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   margin-bottom: 14px;
+}
+
+.compact-slider-group {
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.params-header-mini {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  padding: 0 2px;
+}
+
+.params-title-mini {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.params-hint-mini {
+  font-size: 10px;
+  color: #94a3b8;
 }
 
 .control-card {
@@ -442,6 +467,11 @@ body {
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-md);
   padding: 12px 14px;
+}
+
+.control-card.compact-card {
+  padding: 8px 12px;
+  border-radius: 10px;
 }
 
 .control-card.highlight-field {
@@ -453,12 +483,12 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 
 .ctrl-label {
-  font-size: 13px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   color: #1e293b;
 }
 
@@ -469,25 +499,25 @@ body {
 }
 
 .badge-mini {
-  font-size: 10px;
+  font-size: 9.5px;
   background: #dbeafe;
   color: #1d4ed8;
-  padding: 2px 6px;
+  padding: 1px 6px;
   border-radius: var(--radius-pill);
 }
 
 .input-tag-pill {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
   background: #ffffff;
   color: #0f172a;
-  padding: 4px 10px;
+  padding: 2px 8px;
   border-radius: var(--radius-sm);
   border: 1px solid #cbd5e1;
-  min-width: 72px;
+  min-width: 68px;
   text-align: right;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .input-tag-pill.highlight {
@@ -497,14 +527,14 @@ body {
 }
 
 .slider-wrapper {
-  margin: 6px 0;
+  margin: 4px 0;
 }
 
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   width: 100%;
-  height: 6px;
+  height: 5px;
   border-radius: 4px;
   background: #e2e8f0;
   outline: none;
@@ -513,8 +543,8 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background: #ffffff;
   cursor: pointer;
@@ -529,16 +559,16 @@ input[type="range"]::-webkit-slider-thumb:active {
 .slider-scale {
   display: flex;
   justify-content: space-between;
-  font-size: 10px;
+  font-size: 9.5px;
   color: #94a3b8;
-  margin-top: 2px;
+  margin-top: 1px;
 }
 
 .sim-note {
   font-size: 11px;
   color: #64748b;
   line-height: 1.5;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   background: #f1f5f9;
   padding: 8px 10px;
   border-radius: var(--radius-sm);
@@ -552,8 +582,9 @@ input[type="range"]::-webkit-slider-thumb:active {
   background: #f8fafc;
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-md);
-  padding: 14px 10px;
-  margin-bottom: 16px;
+  padding: 12px 10px;
+  margin-top: 6px;
+  margin-bottom: 12px;
 }
 
 .kpi-column {
@@ -563,7 +594,7 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 .kpi-val {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 800;
   color: #0f172a;
   letter-spacing: -0.3px;
@@ -589,14 +620,14 @@ input[type="range"]::-webkit-slider-thumb:active {
   background: #e2e8f0;
 }
 
-/* Chart Canvas Wrapper */
+/* Chart Canvas Wrapper - Enlarged */
 .chart-container-box {
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  border-radius: var(--radius-md);
-  padding: 14px 12px;
-  margin-bottom: 14px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  border-radius: 16px;
+  padding: 16px 14px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
 }
 
 .chart-header {
@@ -607,15 +638,22 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 
 .chart-title {
-  font-size: 13px;
-  font-weight: 700;
+  font-size: 14px;
+  font-weight: 800;
   color: #0f172a;
+}
+
+.chart-subtitle-mini {
+  display: block;
+  font-size: 10px;
+  color: #94a3b8;
+  margin-top: 1px;
 }
 
 .chart-status {
   font-size: 11px;
-  font-weight: 600;
-  padding: 3px 8px;
+  font-weight: 700;
+  padding: 3px 9px;
   border-radius: var(--radius-pill);
   background: #fff7ed;
   color: #ea580c;
@@ -630,8 +668,12 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 .canvas-wrap {
   width: 100%;
-  height: 220px;
+  height: 280px;
   position: relative;
+}
+
+.canvas-wrap.enlarged-chart {
+  height: 285px;
 }
 
 .chart-legend-custom {
@@ -685,7 +727,412 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 
 /* =========================================================
-   Section 3: Shawshank Tunnel Styles
+   Section 3: Leverage Interest Calculator (杠杆利息试算)
+   ========================================================= */
+.leverage-card {
+  background: #ffffff;
+  border: 1px solid #fed7aa;
+}
+
+.leverage-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 14px 0 16px 0;
+}
+
+.lev-input-group {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-md);
+  padding: 10px 12px;
+}
+
+.lev-input-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.lev-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.lev-val-display {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ea580c;
+}
+
+.lev-input-wrapper {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  transition: border-color 0.2s;
+}
+
+.lev-input-wrapper:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.lev-prefix {
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  margin-right: 6px;
+}
+
+.lev-input-wrapper input {
+  flex-grow: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #0f172a;
+  background: transparent;
+}
+
+.quick-pill-row, .term-selector-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.lev-pill, .term-btn {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.lev-pill:hover, .term-btn:hover {
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.lev-pill.active, .term-btn.active {
+  background: #eff6ff;
+  border-color: #2563eb;
+  color: #1d4ed8;
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Repayment method tabs */
+.repay-method-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-top: 6px;
+}
+
+.method-tab {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  padding: 8px 4px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  transition: all 0.2s;
+}
+
+.method-tab:hover {
+  border-color: #94a3b8;
+}
+
+.method-tab.active {
+  background: #eff6ff;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb;
+}
+
+.tab-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+.method-tab.active .tab-title {
+  color: #1d4ed8;
+}
+
+.tab-desc {
+  font-size: 9.5px;
+  color: #64748b;
+}
+
+/* Leverage Result Card */
+.lev-result-card {
+  background: #f8fafc;
+  border: 1px solid #fed7aa;
+  border-radius: var(--radius-md);
+  padding: 14px 12px;
+}
+
+.lev-kpi-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.lev-kpi-item {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.lev-kpi-item.primary {
+  background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+  border-color: #bfdbfe;
+}
+
+.lev-kpi-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.lev-kpi-num {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.lev-kpi-sub {
+  font-size: 10.5px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.lev-risk-tip {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  font-size: 11px;
+  color: #9a3412;
+  margin: 12px 0 10px 0;
+  line-height: 1.5;
+}
+
+.lev-actions-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.btn-toggle-schedule {
+  flex: 1;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #334155;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.btn-toggle-schedule:hover {
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+.btn-modal-schedule {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #1d4ed8;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-modal-schedule:hover {
+  background: #dbeafe;
+}
+
+.schedule-table-wrap {
+  margin-top: 12px;
+}
+
+.table-scroll-container {
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+}
+
+.schedule-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.schedule-table thead th {
+  position: sticky;
+  top: 0;
+  background: #f1f5f9;
+  color: #475569;
+  padding: 7px 8px;
+  font-weight: 700;
+  text-align: right;
+  border-bottom: 1px solid #e2e8f0;
+  z-index: 2;
+}
+
+.schedule-table thead th:first-child {
+  text-align: center;
+}
+
+.schedule-table tbody td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: right;
+  color: #334155;
+}
+
+.schedule-table tbody td:first-child {
+  text-align: center;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.schedule-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* Modal Overlay & Card */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: 18px;
+  width: 100%;
+  max-width: 440px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.modal-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.modal-subtitle {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: 700;
+  color: #64748b;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.modal-close-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.modal-body {
+  padding: 14px 16px;
+  overflow-y: auto;
+}
+
+.modal-summary-banner {
+  display: flex;
+  justify-content: space-between;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  margin-bottom: 12px;
+  font-size: 11px;
+}
+
+.modal-table-scroll {
+  max-height: 55vh;
+}
+
+/* =========================================================
+   Section 4: Shawshank Tunnel Styles
    ========================================================= */
 .shawshank-card {
   background: linear-gradient(180deg, #ffffff 0%, #fffdf5 100%);
@@ -884,8 +1331,10 @@ input[type="range"]::-webkit-slider-thumb:active {
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-md);
   padding: 10px 12px;
-  transition: all 0.3s ease;
-  opacity: 0.75;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
 }
 
 .stage-card.passed {
@@ -894,11 +1343,47 @@ input[type="range"]::-webkit-slider-thumb:active {
   opacity: 1;
 }
 
+.stage-card.passed:hover {
+  border-color: #34d399;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.12);
+  transform: translateY(-1px);
+}
+
 .stage-card.active {
   border-color: #fcd34d;
   background: #fffbeb;
-  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.12);
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.15);
   opacity: 1;
+}
+
+.stage-card.active:hover {
+  border-color: #f59e0b;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.22);
+  transform: translateY(-1px);
+}
+
+.stage-card.locked {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  opacity: 0.52;
+  cursor: not-allowed;
+}
+
+.stage-card.locked:hover {
+  opacity: 0.6;
+}
+
+/* Shake animation when clicking a locked card */
+@keyframes shakeCard {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+.stage-card.shake {
+  animation: shakeCard 0.4s ease-in-out;
+  border-color: #f87171 !important;
+  background: #fff1f2 !important;
 }
 
 .stage-icon {
@@ -912,6 +1397,10 @@ input[type="range"]::-webkit-slider-thumb:active {
   border: 1px solid #e2e8f0;
   border-radius: var(--radius-sm);
   flex-shrink: 0;
+}
+
+.stage-card.locked .stage-icon {
+  filter: grayscale(1);
 }
 
 .stage-content {
@@ -944,11 +1433,28 @@ input[type="range"]::-webkit-slider-thumb:active {
   line-height: 1.4;
 }
 
+.stage-action-tip {
+  font-size: 10px;
+  color: #059669;
+  font-weight: 700;
+  margin-top: 3px;
+}
+
+.stage-card.active .stage-action-tip {
+  color: #d97706;
+}
+
+.stage-action-tip.lock-hint {
+  color: #94a3b8;
+  font-weight: 500;
+}
+
 .stage-check {
-  font-size: 14px;
+  font-size: 15px;
   color: #94a3b8;
   width: 24px;
   text-align: center;
+  flex-shrink: 0;
 }
 
 .stage-card.passed .stage-check {
@@ -958,6 +1464,10 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 .stage-card.active .stage-check {
   color: #d97706;
+}
+
+.stage-card.locked .stage-check {
+  color: #cbd5e1;
 }
 
 /* Hammer Input Card */
