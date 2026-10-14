@@ -117,6 +117,71 @@ function formatChartY(val) {
 }
 
 /**
+ * Section 1: Reality Check Dynamic Calculations
+ */
+function initRealitySection() {
+  const tInput = document.getElementById('realityTargetInput');
+  const yInput = document.getElementById('realityYearsInput');
+  const iInput = document.getElementById('realityInitialInput');
+  if (!tInput || !yInput || !iInput) return;
+
+  [tInput, yInput, iInput].forEach(inp => {
+    inp.addEventListener('input', updateRealitySection);
+  });
+
+  updateRealitySection();
+}
+
+function updateRealitySection() {
+  const tInput = document.getElementById('realityTargetInput');
+  const yInput = document.getElementById('realityYearsInput');
+  const iInput = document.getElementById('realityInitialInput');
+  if (!tInput || !yInput || !iInput) return;
+
+  const targetW = Math.max(1, parseFloat(tInput.value) || 500);
+  const years = Math.max(1, parseInt(yInput.value) || 5);
+  const initialW = Math.max(0.1, parseFloat(iInput.value) || 30);
+
+  const multiple = targetW / initialW;
+  const cagr = ((Math.pow(multiple, 1 / years) - 1) * 100);
+
+  const cagrDisplay = document.getElementById('realityCagrDisplay');
+  const yearsDisplay = document.getElementById('realityYearsDisplay');
+  const multDisplay = document.getElementById('realityMultipleDisplay');
+  const alarmDesc = document.getElementById('realityAlarmDesc');
+  const stepper = document.getElementById('realityTimelineStepper');
+
+  if (cagrDisplay) cagrDisplay.textContent = cagr > 0 ? cagr.toFixed(2) : '0.00';
+  if (yearsDisplay) yearsDisplay.textContent = years;
+  if (multDisplay) multDisplay.textContent = `${multiple.toFixed(2)} 倍`;
+  if (alarmDesc) {
+    alarmDesc.innerHTML = `连续 ${years} 年维持 ${cagr.toFixed(2)}% 的年复合收益率，在专业金融投资中属于<strong>极低概率事件</strong>。这是不可能的，痴人做梦！`;
+  }
+
+  if (stepper) {
+    let stepsHTML = '';
+    const rateFactor = 1 + (cagr / 100);
+    for (let k = 1; k <= years; k++) {
+      const isFinal = (k === years);
+      let amountW = 0;
+      if (isFinal) {
+        amountW = targetW;
+      } else {
+        amountW = initialW * Math.pow(rateFactor, k);
+      }
+      stepsHTML += `
+        <div class="step-row ${isFinal ? 'final' : ''}">
+          <span class="year-pill ${isFinal ? 'target-pill' : ''}">第 ${k} 年末</span>
+          <span class="line-dots"></span>
+          <span class="amount ${isFinal ? 'highlight-orange' : ''}">约 ${amountW.toFixed(2)} 万元</span>
+        </div>
+      `;
+    }
+    stepper.innerHTML = stepsHTML;
+  }
+}
+
+/**
  * Calculate yearly asset projection
  * @param {number} P Initial Capital
  * @param {number} PMT Monthly Contribution
@@ -921,20 +986,44 @@ function getLogs() {
     {
       date: '初始记录',
       text: '启动第一关本金，凿开高墙第一寸基石',
-      meters: '+100.0 米'
+      meters: '+30.0 米'
     }
   ];
 }
 
 function renderLogs() {
   const logs = getLogs();
-  elements.logsList.innerHTML = logs.map(log => `
+  if (logs.length === 0) {
+    elements.logsList.innerHTML = `
+      <li class="log-empty-item">暂无挖掘日志（可在上方输入金额打卡记录）</li>
+    `;
+    return;
+  }
+
+  elements.logsList.innerHTML = logs.map((log, index) => `
     <li class="log-item">
-      <span class="log-date">${log.date}</span>
-      <span class="log-text">${log.text}</span>
-      <span class="log-dist">${log.meters}</span>
+      <div class="log-left-col">
+        <span class="log-date">${log.date}</span>
+        <span class="log-text" title="${log.text}">${log.text}</span>
+      </div>
+      <div class="log-right-col">
+        <span class="log-dist">${log.meters}</span>
+        <button type="button" class="btn-del-log" data-index="${index}" title="删除该条记录">✕</button>
+      </div>
     </li>
   `).join('');
+
+  // Bind individual delete buttons
+  elements.logsList.querySelectorAll('.btn-del-log').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = parseInt(btn.dataset.index);
+      const currentLogs = getLogs();
+      currentLogs.splice(idx, 1);
+      localStorage.setItem(STORAGE_KEYS.LOGS, JSON.stringify(currentLogs));
+      renderLogs();
+    });
+  });
 }
 
 /**
@@ -995,9 +1084,9 @@ function setupPresetButtons() {
 
   if (btnFantasy) {
     btnFantasy.addEventListener('click', () => {
-      elements.initialCapital.value = 350000;
+      elements.initialCapital.value = 300000;
       elements.monthlyContribution.value = 0;
-      elements.cagrRate.value = 70.2;
+      elements.cagrRate.value = 75.6;
       elements.yearsPeriod.value = 5;
 
       btnFantasy.classList.add('active');
@@ -1008,7 +1097,7 @@ function setupPresetButtons() {
 
   if (btnRealistic) {
     btnRealistic.addEventListener('click', () => {
-      elements.initialCapital.value = 350000;
+      elements.initialCapital.value = 300000;
       elements.monthlyContribution.value = 12000;
       elements.cagrRate.value = 10.0;
       elements.yearsPeriod.value = 8;
@@ -1018,10 +1107,22 @@ function setupPresetButtons() {
       updateSimulation();
     });
   }
+
+  // Setup Clear Logs Button
+  const btnClearLogs = document.getElementById('btnClearLogs');
+  if (btnClearLogs) {
+    btnClearLogs.addEventListener('click', () => {
+      if (confirm('确认清空所有挖掘日志？')) {
+        localStorage.setItem(STORAGE_KEYS.LOGS, JSON.stringify([]));
+        renderLogs();
+      }
+    });
+  }
 }
 
 // Initialize on DOM load
 window.addEventListener('DOMContentLoaded', () => {
+  initRealitySection();
   setupPresetButtons();
   updateSimulation();
   initLeverageCalculator();

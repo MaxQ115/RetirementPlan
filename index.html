@@ -42,17 +42,29 @@
         <h2 class="card-title">不可行的“单车变摩托”</h2>
         
         <div class="spec-grid">
-          <div class="spec-item">
+          <div class="spec-item editable-spec" title="点击直接修改退休财务目标">
             <span class="label">退休财务目标</span>
-            <span class="value highlight-orange">500 万</span>
+            <div class="spec-val-box">
+              <input type="number" id="realityTargetInput" class="spec-inline-input highlight-orange" value="500" min="10" max="5000" step="50">
+              <span class="spec-inline-unit highlight-orange">万</span>
+            </div>
+            <span class="spec-edit-tag">✎ 可点击修改</span>
           </div>
-          <div class="spec-item">
+          <div class="spec-item editable-spec" title="点击直接修改计划时间">
             <span class="label">计划时间</span>
-            <span class="value">5 年</span>
+            <div class="spec-val-box">
+              <input type="number" id="realityYearsInput" class="spec-inline-input" value="5" min="1" max="40" step="1">
+              <span class="spec-inline-unit">年</span>
+            </div>
+            <span class="spec-edit-tag">✎ 可点击修改</span>
           </div>
-          <div class="spec-item">
+          <div class="spec-item editable-spec" title="点击直接修改启动资产">
             <span class="label">启动资产</span>
-            <span class="value">35 万</span>
+            <div class="spec-val-box">
+              <input type="number" id="realityInitialInput" class="spec-inline-input" value="30" min="1" max="1000" step="5">
+              <span class="spec-inline-unit">万</span>
+            </div>
+            <span class="spec-edit-tag">✎ 可点击修改</span>
           </div>
         </div>
 
@@ -60,39 +72,40 @@
           <p class="callout-text">
             在<strong>不追加任何后续储蓄或新资金</strong>的前提下，你需要达到的年复合增长率（CAGR）约为：
           </p>
-          <div class="cagr-rate"><span class="rate-number">70.21</span>%</div>
+          <div class="cagr-rate"><span class="rate-number" id="realityCagrDisplay">75.60</span>%</div>
           <p class="callout-sub">
-            这意味着启动资产需要在 5 年内暴涨 <strong class="text-orange">14.29 倍</strong>。
+            这意味着启动资产需要在 <span id="realityYearsDisplay">5</span> 年内暴涨 <strong class="text-orange" id="realityMultipleDisplay">16.67 倍</strong>。
           </p>
         </div>
 
         <div class="trajectory-block">
           <div class="sub-heading">每年的净资产增长轨迹预测：</div>
-          <div class="timeline-stepper">
+          <div class="timeline-stepper" id="realityTimelineStepper">
+            <!-- Dynamically populated by updateRealitySection() -->
             <div class="step-row">
               <span class="year-pill">第 1 年末</span>
               <span class="line-dots"></span>
-              <span class="amount">约 59.57 万元</span>
+              <span class="amount">约 52.68 万元</span>
             </div>
             <div class="step-row">
               <span class="year-pill">第 2 年末</span>
               <span class="line-dots"></span>
-              <span class="amount">约 101.40 万元</span>
+              <span class="amount">约 92.51 万元</span>
             </div>
             <div class="step-row">
               <span class="year-pill">第 3 年末</span>
               <span class="line-dots"></span>
-              <span class="amount">约 172.59 万元</span>
+              <span class="amount">约 162.45 万元</span>
             </div>
             <div class="step-row">
               <span class="year-pill">第 4 年末</span>
               <span class="line-dots"></span>
-              <span class="amount">约 293.77 万元</span>
+              <span class="amount">约 285.26 万元</span>
             </div>
             <div class="step-row final">
               <span class="year-pill target-pill">第 5 年末</span>
               <span class="line-dots"></span>
-              <span class="amount highlight-orange">约 500.02 万元</span>
+              <span class="amount highlight-orange">约 500.00 万元</span>
             </div>
           </div>
         </div>
@@ -103,8 +116,8 @@
             <span class="alarm-icon">⚠️</span>
             <span class="alarm-title">极清醒的金融真相</span>
           </div>
-          <p class="alarm-desc">
-            连续 5 年维持 70.21% 的年复合收益率，在专业金融投资中属于<strong>极低概率事件</strong>。这是不可能的，痴人做梦！
+          <p class="alarm-desc" id="realityAlarmDesc">
+            连续 5 年维持 75.60% 的年复合收益率，在专业金融投资中属于<strong>极低概率事件</strong>。这是不可能的，痴人做梦！
           </p>
           <div class="alarm-conclusion">
             <strong>核心结论：</strong>必须有计划、储蓄、选中好的投资标的，并且<strong>每个月追加投资金额</strong>，缺一不可！！！
@@ -129,7 +142,7 @@
         <!-- 1. KPI 3-Column Display (Moved to Top) -->
         <div class="kpi-banner">
           <div class="kpi-column">
-            <div class="kpi-val" id="kpiInitial">¥350,000</div>
+            <div class="kpi-val" id="kpiInitial">¥300,000</div>
             <div class="kpi-sub">启动资产</div>
           </div>
           <div class="kpi-divider"></div>
@@ -174,10 +187,10 @@
           <div class="control-card compact-card">
             <div class="control-header">
               <label for="initialCapital" class="ctrl-label">启动资产</label>
-              <div class="input-tag-pill" id="displayInitialTag">¥350,000</div>
+              <div class="input-tag-pill" id="displayInitialTag">¥300,000</div>
             </div>
             <div class="slider-wrapper">
-              <input type="range" id="initialCapital" min="0" max="2000000" step="10000" value="350000">
+              <input type="range" id="initialCapital" min="0" max="2000000" step="10000" value="300000">
             </div>
             <div class="slider-scale">
               <span>0</span>
@@ -579,12 +592,20 @@
           </div>
 
           <div class="strike-logs">
-            <div class="logs-header">近期越狱挖掘日志：</div>
+            <div class="logs-header">
+              <span class="logs-title-text">近期越狱挖掘日志：</span>
+              <button type="button" class="btn-clear-logs" id="btnClearLogs" title="清空全部日志">清空记录</button>
+            </div>
             <ul class="logs-list" id="logsList">
               <li class="log-item">
-                <span class="log-date">2026-10-13</span>
-                <span class="log-text">启动本金入驻，牢房高墙被掘出基石</span>
-                <span class="log-dist">+35.0 米</span>
+                <div class="log-left-col">
+                  <span class="log-date">2026-10-13</span>
+                  <span class="log-text">启动本金入驻，牢房高墙被掘出基石</span>
+                </div>
+                <div class="log-right-col">
+                  <span class="log-dist">+30.0 米</span>
+                  <button type="button" class="btn-del-log" data-index="0" title="删除记录">✕</button>
+                </div>
               </li>
             </ul>
           </div>
